@@ -44,4 +44,4 @@ The Weather Forecast application allows users to retrieve weather forecasts for 
 ## 🔗 Project Links
 1. Backend repository: [link](https://github.com/StrADaMi/weather-backend)
 2. Frontend repository: [link](https://github.com/StrADaMi/weather-frontend)
-3. Access to the deployed application: [link](https://your-app-name.render.com)
+3. Access to the deployed application: [link](https://weather-frontend-o4rv.onrender.com/)
