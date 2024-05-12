@@ -15,8 +15,8 @@ public class WeatherService {
 
     public List<DayWeatherWithEnergyProduction> getWeather(String latitude, String longitude) {
         return externalWeatherApiClient.getWeather(latitude, longitude)
-            .stream()
-            .map(energyProductionService::countEstimateEnergyProduction)
-            .toList();
+                .stream()
+                .map(energyProductionService::countEstimateEnergyProduction)
+                .toList();
     }
 }

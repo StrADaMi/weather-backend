@@ -3,7 +3,10 @@ package com.weather.backend.api.config;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -17,7 +20,7 @@ public class ErrorHandler {
     public String handleConstraintViolationException(ConstraintViolationException ex) {
         Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
         return new ArrayList<>(constraintViolations)
-            .get(0)
-            .getMessage();
+                .get(0)
+                .getMessage();
     }
 }

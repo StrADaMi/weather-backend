@@ -2,7 +2,6 @@ package com.weather.backend.api.controller;
 
 import com.weather.backend.api.dto.WeatherCollectionDto;
 import com.weather.backend.api.mapper.WeatherDtoMapper;
-import com.weather.backend.api.validator.ValidCoordinate;
 import com.weather.backend.domain.model.DayWeatherWithEnergyProduction;
 import com.weather.backend.domain.service.WeatherService;
 import jakarta.validation.constraints.Max;
@@ -28,11 +27,13 @@ public class WeatherController {
 
     @GetMapping("/api/v1/weather/daily")
     public ResponseEntity<WeatherCollectionDto> content(
-            @Min(value = 18, message = "Age should not be less than 18")
-            @Max(value = 150, message = "Age should not be greater than 150")
+
+            @Min(value = -90, message = "Latitude must be between -90 and 90")
+            @Max(value = 90, message = "Latitude must be between -90 and 90")
             @RequestParam(value = "latitude", required = false) String latitude,
 
-            @ValidCoordinate
+            @Min(value = -180, message = "Latitude must be between -180 and 180")
+            @Max(value = 180, message = "Latitude must be between -180 and 180")
             @RequestParam(value = "longitude", required = false) String longitude) {
 
         List<DayWeatherWithEnergyProduction> weathers = weatherService.getWeather(latitude, longitude);

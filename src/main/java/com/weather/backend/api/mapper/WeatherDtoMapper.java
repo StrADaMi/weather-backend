@@ -12,8 +12,8 @@ import java.util.List;
 public class WeatherDtoMapper {
     public WeatherCollectionDto mapToDto(List<DayWeatherWithEnergyProduction> weathers) {
         List<WeatherDayDto> dtos = weathers.stream()
-            .map(this::mapToDto)
-            .toList();
+                .map(this::mapToDto)
+                .toList();
 
         return new WeatherCollectionDto(dtos);
     }
@@ -21,11 +21,11 @@ public class WeatherDtoMapper {
     private WeatherDayDto mapToDto(DayWeatherWithEnergyProduction model) {
         DayWeather dayWeather = model.dayWeather();
         return new WeatherDayDto(
-            dayWeather.date(),
-            dayWeather.code(),
-            dayWeather.maxTemperature(),
-            dayWeather.minTemperature(),
-            model.estimateEnergyProduction()
+                dayWeather.date(),
+                dayWeather.code(),
+                dayWeather.maxTemperature(),
+                dayWeather.minTemperature(),
+                model.estimateEnergyProduction()
         );
     }
 }

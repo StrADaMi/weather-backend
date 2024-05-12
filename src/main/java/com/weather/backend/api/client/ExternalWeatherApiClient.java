@@ -19,18 +19,27 @@ public class ExternalWeatherApiClient {
     private final RestTemplate restTemplate;
     private final WeatherClientDtoMapper weatherClientDtoMapper;
 
-    public List<DayWeather> getWeather(String latitude, String longitude) {
+    public List < DayWeather > getWeather(String latitude, String longitude) {
         try {
-            String url = String.format("https://api.open-meteo.com/v1/forecast" +
+            String url = String.format(
+                "https://api.open-meteo.com/v1/forecast" +
                     "?latitude=%s" +
                     "&longitude=%s" +
                     "&daily=weather_code,temperature_2m_max,temperature_2m_min,daylight_duration" +
                     "&timezone=Europe/Warsaw",
-                latitude, longitude);
-            InternalWeatherApiCollectionDto dto = restTemplate.exchange(url, HttpMethod.GET, null,
-                    InternalWeatherApiCollectionDto.class)
-                .getBody();
+                latitude,
+                longitude
+            );
+
+            InternalWeatherApiCollectionDto dto = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                InternalWeatherApiCollectionDto.class
+                ).getBody();
+
             Objects.requireNonNull(dto);
+
             return weatherClientDtoMapper.mapToDayWeather(dto.getData());
         } catch (RestClientException ex) {
             throw new ApplicationException("Error while fetching weather data - external API error");

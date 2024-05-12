@@ -12,12 +12,12 @@ import java.util.stream.IntStream;
 public class WeatherClientDtoMapper {
     public List<DayWeather> mapToDayWeather(InternalWeatherApiDailyDto dto) {
         return IntStream.range(0, dto.getDayDates().size())
-            .mapToObj(i -> new DayWeather(
-                dto.getDayDates().get(i),
-                dto.getWeatherCodes().get(i),
-                dto.getMaxTemperatures().get(i),
-                dto.getMinTemperatures().get(i),
-                dto.getDaylightDurations().get(i)))
-            .collect(Collectors.toList());
+                .mapToObj(i -> new DayWeather(
+                        dto.getDayDates().get(i),
+                        dto.getWeatherCodes().get(i),
+                        dto.getMaxTemperatures().get(i),
+                        dto.getMinTemperatures().get(i),
+                        dto.getDaylightDurations().get(i)))
+                .collect(Collectors.toList());
     }
 }
